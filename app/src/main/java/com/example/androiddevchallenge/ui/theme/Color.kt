@@ -25,9 +25,6 @@ val grey = Color(0xF7F7F7F7F)
 val smokey_white = Color(0xF5F5F5)
 val ghost_white = Color(0xF8F8FF)
 
-
-
-
 val purple500 = Color(0xFF6200EE)
 val purple700 = Color(0xFF3700B3)
 val teal200 = Color(0xFF03DAC5)
