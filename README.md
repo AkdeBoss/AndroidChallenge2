@@ -24,7 +24,9 @@ Finally after much efforts and wows, I present you.... MY SUBMISSION to the chal
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
-<img src="/results/screenshot_1.png" width="260">&emsp;<img src="/results/screenshot_2.png" width="260">
+![ScreenShot](/results/screenshot_1.png)
+![ScreenShot](/results/screenshot_2.png)
+
 
 ## License
 ```
