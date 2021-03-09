@@ -15,35 +15,78 @@
  */
 package com.example.androiddevchallenge
 
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.androiddevchallenge.ui.theme.MyTheme
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.androiddevchallenge.models.CountDownModel
+import com.example.androiddevchallenge.ui.theme.*
+import com.example.androiddevchallenge.viewmodels.CountDownViewModel
+import kotlin.math.PI
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
+import com.example.androiddevchallenge.ui.scenes.*
+import kotlinx.coroutines.launch
+import java.time.Clock
 
+
+@ExperimentalAnimationApi
 class MainActivity : AppCompatActivity() {
+    private val viewModel: CountDownViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                MyApp(viewModel)
             }
         }
     }
 }
 
+
 // Start building your app here!
+@ExperimentalAnimationApi
 @Composable
-fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
-    }
+fun MyApp(viewModel: CountDownViewModel? = null) {
+
+    val isTimerSet: Boolean by viewModel!!.isTimerSet.observeAsState(false)
+
+    AnimatedVisibility(visible = isTimerSet) {  ActionScene(modifier=Modifier.fillMaxHeight().fillMaxWidth(),viewModel)}
+    AnimatedVisibility(visible = !isTimerSet) { OptionsGrid(modifier=Modifier.fillMaxHeight().fillMaxWidth(),viewModel) }
+
+    // critical= if(countDown.isCritical()) {colors[(countDown.seconds%2)]}else colors[1]
+   //
 }
 
+
+
+@ExperimentalAnimationApi
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun LightPreview() {
@@ -52,6 +95,7 @@ fun LightPreview() {
     }
 }
 
+@ExperimentalAnimationApi
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
 fun DarkPreview() {
