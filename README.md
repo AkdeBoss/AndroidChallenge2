@@ -19,7 +19,7 @@ I realised the declarative UI was already there in Flutter (a thing i recently s
 
 Indeed it was a paradigm shift, also exciting, coz its new and you have to constantly doubt the canary (which doesnt sing all that too well...) and forcequit/restart to even run the simplest of tasks (OH! the horror!!!), when i asked the elders for help, there was no help, googling problems wont always provide the solution, there was no one....(using it yet).
 
-Finally after much efforts and wows, I present you.... MY SUBMISSION to the challenge... vola!!!!!!
+Finally after much efforts and wows, I present you.... MY SUBMISSION to the challenge... 
 
 
 ## :camera_flash: Screenshots
